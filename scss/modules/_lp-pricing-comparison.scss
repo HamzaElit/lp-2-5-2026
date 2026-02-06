@@ -20,11 +20,6 @@
 
   .lp-pricing__header {
     margin-bottom: 42px;
-    padding-left: 20px; // Mobile padding alignment
-
-    @include lg-up {
-      padding-left: 0;
-    }
 
     .title {
       font-family: "sofia-pro", sans-serif;

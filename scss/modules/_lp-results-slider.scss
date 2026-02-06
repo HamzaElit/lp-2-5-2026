@@ -23,6 +23,19 @@
     .highlight {
       color: #599af2;
     }
+
+    .dash {
+      @media (max-width: 768px) {
+        display: none;
+      }
+    }
+
+    .mobile-only {
+      display: none;
+      @media (max-width: 768px) {
+        display: block;
+      }
+    }
   }
 
   &__wrapper {
