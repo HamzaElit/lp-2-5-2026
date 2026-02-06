@@ -2,7 +2,7 @@
   overflow: hidden;
 
   @media (max-width: 768px) {
-    padding: 110px 0 22px;
+    padding: 70px 0 22px;
   }
   .container {
     @include lg-up {
@@ -14,7 +14,7 @@
     width: min(100% - 6rem, 110rem);
     margin-left: auto;
     margin-right: auto;
-    font-weight: 700;
+    font-weight: 900;
     font-size: 46px;
     line-height: 50px;
     letter-spacing: -1.38px;
@@ -22,12 +22,7 @@
     margin-bottom: 39px;
 
     @media (max-width: 768px) {
-      font-size: 28px;
-      line-height: 30px;
-      letter-spacing: -0.84px;
       margin-bottom: 35px;
-      max-width: 338px;
-      margin-left: 3rem;
       margin-right: auto;
     }
 

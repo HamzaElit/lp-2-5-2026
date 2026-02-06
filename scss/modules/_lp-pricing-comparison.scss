@@ -115,7 +115,7 @@
         letter-spacing: -1.38px;
         color: #fff;
         position: absolute;
-        bottom: 25px; // Consistent top position
+        bottom: 20px; // Consistent top position
         z-index: 2;
       }
     }
@@ -144,7 +144,7 @@
 
     .bar-blue {
       background: linear-gradient(270deg, #599bf1 24.41%, #003870 100%);
-      width: 75%; // Mobile approx
+      width: 81%; // Mobile approx
 
       @include lg-up {
         width: 573px; // Fixed width desktop
@@ -162,7 +162,7 @@
 
     .bar-grey {
       background-color: #9a9a9a;
-      width: 55%;
+      width: 69%;
 
       @include lg-up {
         width: 299px;

@@ -81,9 +81,11 @@ window.addEventListener("load", function () {
       spaceBetween: 16,
       centeredSlides: !isDesktop,
       loop: true,
-      loopAdditionalSlides: 10,
+      loopedSlides: 11, // Must match or exceed actual number of slides
+      loopAdditionalSlides: 5,
       speed: 300,
       allowTouchMove: window.innerWidth < 768,
+      watchSlidesProgress: true,
       navigation: {
         nextEl: '.lp-results-nav--next',
         prevEl: '.lp-results-nav--prev',
@@ -91,13 +93,13 @@ window.addEventListener("load", function () {
       breakpoints: {
         320: {
           slidesPerView: 'auto',
-          spaceBetween: 0,
+          spaceBetween: 5,
           centeredSlides: true,
           allowTouchMove: true,
         },
         768: {
           slidesPerView: 'auto',
-          spaceBetween: 10,
+          spaceBetween: 16,
           centeredSlides: true,
           allowTouchMove: false,
         },
