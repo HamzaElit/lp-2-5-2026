@@ -1,0 +1,163 @@
+@import "../mixins/mixins-master";
+
+.lp-features-comparison-table {
+  padding: 55px 0;
+  background-color: var(--White-Bg); // #e5e8f2
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 100%; // Ensure we use full width available
+    @include lg-up {
+      width: min(calc(100% - 6rem), 110rem); // Standard desktop container
+    }
+  }
+
+  .table-header-title {
+    margin-bottom: 27px;
+    width: 100%;
+
+    h2 {
+      font-weight: 900;
+      font-size: 46px;
+      line-height: 1;
+      letter-spacing: -1.38px;
+      color: var(--Black);
+      margin: 0;
+
+      @include lg-up {
+        font-size: 52px;
+        letter-spacing: -1.56px;
+      }
+
+      .highlight {
+        color: #599bf1;
+      }
+    }
+  }
+
+  .comparison-table {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+
+    @include lg-up {
+      width: 100%;
+    }
+  }
+
+  .table-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px; // Mobile gap
+    width: 100%;
+
+    @include lg-up {
+      gap: 7px; // Desktop gap
+    }
+
+    &.table-head {
+      margin-bottom: 4px;
+
+      .col-feature {
+        background: transparent;
+        font-weight: 600;
+        align-items: flex-end; // Align text to bottom
+        padding-bottom: 10px;
+        text-transform: uppercase;
+        font-size: 16px;
+        padding-left: 20px;
+      }
+
+      .col-elithair,
+      .col-others {
+        background: transparent;
+        padding-top: 11px;
+      }
+
+      .col-elithair {
+        img {
+          width: 28px;
+          height: 28px;
+        }
+      }
+
+      .col-others {
+        font-weight: 600;
+        font-size: 14px;
+        color: var(--Black);
+      }
+    }
+
+    // Column Styles
+    .col-feature {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      padding: 0 25px;
+      background-color: #fff;
+      border-radius: 30px 0 0 30px;
+      height: 54px;
+      font-family: "sofia-pro", sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      color: #1f1f1f;
+      min-width: 0; // Prevent flex overflow
+
+      @include lg-up {
+        font-size: 16px;
+      }
+    }
+
+    .col-elithair {
+      width: 60px;
+      height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #0e184b;
+      flex-shrink: 0;
+
+      .icon-check-blue {
+        display: block;
+        width: 30px;
+        height: 30px;
+        background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='15' cy='15' r='15' fill='%235799F1'/%3E%3Cpath d='M21.7531 10.5363C22.4373 11.2205 22.4371 12.3297 21.7531 13.014L13.87 20.8971C13.7815 20.9856 13.6381 20.9856 13.5496 20.8971L13.3942 20.7417C13.3915 20.7391 13.3872 20.7391 13.3845 20.7417C13.3819 20.7444 13.3776 20.7444 13.3749 20.7417L8.88503 16.2519C8.19027 15.5569 8.1908 14.4298 8.88572 13.7349C9.58067 13.0403 10.7071 13.0402 11.402 13.7349L13.0324 15.3652C13.4229 15.7558 14.0561 15.7558 14.4466 15.3652L19.2755 10.5363C19.9597 9.85244 21.069 9.85233 21.7531 10.5363Z' fill='white'/%3E%3C/svg%3E%0A");
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+    }
+
+    .col-others {
+      width: 60px;
+      height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #fff;
+      border-radius: 0 30px 30px 0;
+      flex-shrink: 0;
+
+      .icon-check-grey {
+        display: block;
+        width: 30px;
+        height: 30px;
+        background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='30' height='30' rx='15' fill='%23F1F1F1'/%3E%3Cpath d='M21.7531 10.5363C22.4373 11.2205 22.4371 12.3297 21.7531 13.014L13.87 20.8971C13.7815 20.9856 13.6381 20.9856 13.5496 20.8971L13.3942 20.7417C13.3915 20.7391 13.3872 20.7391 13.3845 20.7417C13.3819 20.7444 13.3776 20.7444 13.3749 20.7417L8.88503 16.2519C8.19027 15.5569 8.1908 14.4298 8.88572 13.7349C9.58067 13.0403 10.7071 13.0402 11.402 13.7349L13.0324 15.3652C13.4229 15.7558 14.0561 15.7558 14.4466 15.3652L19.2755 10.5363C19.9597 9.85244 21.069 9.85233 21.7531 10.5363Z' fill='%235799F1'/%3E%3C/svg%3E%0A");
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+
+      .icon-cross-grey {
+        display: block;
+        width: 30px;
+        height: 30px;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30' fill='none'%3E%3Cpath d='M21.2213 9.04401C21.8849 9.70765 21.8854 10.784 21.2219 11.4478L18.1995 14.4702C17.809 14.8607 17.809 15.4939 18.1995 15.8844L21.2219 18.9069C21.8854 19.5707 21.8849 20.647 21.2213 21.3107C20.5576 21.9741 19.4819 21.974 18.8182 21.3107L15.7957 18.2882C15.4052 17.8977 14.772 17.8977 14.3815 18.2882L11.359 21.3107C10.6953 21.9741 9.61894 21.9736 8.9553 21.31C8.2919 20.6463 8.29194 19.5706 8.9553 18.9069L11.9778 15.8844C12.3683 15.4939 12.3683 14.8607 11.9778 14.4702L8.9553 11.4478C8.2919 10.7841 8.29186 9.70836 8.9553 9.0447C9.61895 8.38105 10.6953 8.38054 11.359 9.04401L14.3815 12.0665C14.772 12.457 15.4052 12.457 15.7957 12.0665L18.8182 9.04401C19.4819 8.38062 20.5576 8.3806 21.2213 9.04401Z' fill='%235C6166'/%3E%3C/svg%3E");
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+    }
+  }
+}

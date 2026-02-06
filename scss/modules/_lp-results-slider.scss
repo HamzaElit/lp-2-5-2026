@@ -1,0 +1,133 @@
+@import "../mixins/mixins-master";
+
+.lp-results-slider {
+  padding: 55px 0 80px;
+  background-color: var(--White-Bg);
+  overflow: hidden;
+
+  // Header Title
+  &__title {
+    font-family: "sofia-pro", sans-serif;
+    font-weight: 900;
+    font-size: 46px;
+    margin: 0 0 50px;
+    color: #0f0f0f;
+    letter-spacing: -1.38px;
+
+    @include lg-up {
+      font-size: 52px;
+      letter-spacing: -1.56px;
+      margin-bottom: 50px;
+    }
+
+    .highlight {
+      color: #599af2;
+    }
+  }
+
+  &__wrapper {
+    position: relative;
+    width: 100%;
+
+    @include lg-up {
+      padding: 0 20px;
+    }
+  }
+
+  // Swiper Customization
+  .lp-results-swiper {
+    width: 100%;
+    padding-bottom: 20px; // Space for shadows
+    overflow: visible; // Allow shadows to persist
+
+    @include lg-up {
+      .swiper-wrapper {
+        transition-timing-function: linear;
+      }
+    }
+  }
+
+  .swiper-slide {
+    width: auto; // Mobile auto width
+    height: auto;
+    transition: transform 0.3s ease;
+
+    &.swiper-slide-active {
+      @media (max-width: 767px) {
+        transform: scale(1.1);
+        position: relative;
+        z-index: 5;
+      }
+    }
+  }
+
+  .result-card {
+    position: relative;
+    width: 282px;
+    height: auto;
+
+    @include lg-up {
+      width: 400px;
+      height: auto;
+    }
+
+    &__image {
+      width: 100%;
+      height: 100%;
+      border-radius: 2.1rem;
+      border: 1px solid rgba(255, 255, 255, 0.65);
+      box-shadow: 2px 4px 12.6px 0 rgba(0, 0, 0, 0.25);
+      overflow: hidden;
+
+      img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  // Navigation Buttons
+  .lp-results-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    z-index: 10;
+    cursor: pointer;
+    display: flex; // Show on mobile
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s;
+
+    @include lg-up {
+      display: none; // Hide on desktop
+    }
+
+    &.swiper-button-disabled {
+      opacity: 0.5;
+      cursor: auto;
+    }
+
+    &--prev {
+      left: -25px;
+    }
+
+    &--next {
+      right: -25px;
+    }
+
+    svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.2s;
+    }
+
+    &:hover:not(.swiper-button-disabled) svg {
+      transform: scale(1.05);
+    }
+  }
+}

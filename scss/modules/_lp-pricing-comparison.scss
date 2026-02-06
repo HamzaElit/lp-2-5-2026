@@ -1,0 +1,190 @@
+@import "../mixins/mixins-master";
+
+.lp-pricing-comparison {
+  padding: 46px 0 22px;
+  @include lg-up {
+    padding-bottom: 80px;
+  }
+  background-color: var(--White-Bg);
+  overflow: hidden;
+
+  .container {
+    // On mobile, we might need to override container padding or let the chart break out
+    // But for now, let's keep it safe. The visual design shows bars touching left?
+    // If so:
+    @media (max-width: 768px) {
+      // padding-left: 0; // If we want to flush left.
+      // But text needs padding.
+    }
+  }
+
+  .lp-pricing__header {
+    margin-bottom: 42px;
+    padding-left: 20px; // Mobile padding alignment
+
+    @include lg-up {
+      padding-left: 0;
+    }
+
+    .title {
+      font-family: "sofia-pro", sans-serif;
+      font-weight: 900;
+      font-size: 46px;
+      line-height: 45px;
+      letter-spacing: -1.38px;
+      color: #0f0f0f;
+      margin: 0;
+
+      @include lg-up {
+        font-size: 52px;
+        line-height: 52px;
+        letter-spacing: -1.56px;
+      }
+
+      .highlight {
+        color: #589af2;
+      }
+
+      .mobile-only {
+        display: block;
+        @include lg-up {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .lp-pricing__chart {
+    display: flex;
+    flex-direction: column;
+    gap: 33px;
+    margin-bottom: 60px;
+    width: 100%;
+
+    // Mobile Breakout logic:
+    // We want bars to touch left edge on mobile?
+    // The container has margin: auto and width logic.
+    // We can pull the chart list left by using negative margin equal to container offset?
+    // Or just treat the bars.
+
+    .chart-row {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      position: relative;
+    }
+
+    .bar {
+      height: 141px; // Desktop and Mobile same height
+      border-radius: 0 22px 22px 0; // Mobile style: Flat left, rounded right
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center; // Horizontally center text relative to bar? Or absolute? Figma uses absolute.
+      justify-content: flex-start;
+
+      // Pulling left to screen edge on mobile
+      margin-left: -3rem; // Counteract container gap approx?
+      // Or cleaner:
+      width: calc(100% + 3rem);
+
+      @include lg-up {
+        border-radius: 22px; // Desktop: fully rounded
+        margin-left: 0;
+        width: 100%; // Reset width logic
+      }
+
+      .label {
+        font-family: "sofia-pro", sans-serif;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 16.2px;
+        color: #fafafa;
+        margin-top: 19px;
+        z-index: 2;
+        text-align: center;
+        margin-right: auto;
+        padding-left: 20px;
+      }
+
+      .price {
+        font-family: "sofia-pro", sans-serif;
+        font-weight: 900;
+        font-size: 46px;
+        line-height: 45px; // 0.94em approx
+        letter-spacing: -1.38px;
+        color: #fff;
+        position: absolute;
+        bottom: 25px; // Consistent top position
+        z-index: 2;
+      }
+    }
+
+    // Individual Bars
+    .bar-black {
+      background-color: #0f0f0f;
+      width: 100%; // Mobile full width?
+      // Figma mobile bar 1 width 378 (screen 404). Approx 93%.
+      max-width: 95%;
+
+      @include lg-up {
+        width: 100%; // Desktop full width of container
+        max-width: none;
+      }
+
+      .price {
+        right: 25px; // Positioning from right
+
+        @include lg-up {
+          right: 30px; // Desktop spacing
+          // Or left: 882px
+        }
+      }
+    }
+
+    .bar-blue {
+      background: linear-gradient(270deg, #599bf1 24.41%, #003870 100%);
+      width: 75%; // Mobile approx
+
+      @include lg-up {
+        width: 573px; // Fixed width desktop
+      }
+
+      .price {
+        right: 20px;
+        text-align: right;
+        @include lg-up {
+          right: 25px;
+          text-align: left;
+        }
+      }
+    }
+
+    .bar-grey {
+      background-color: #9a9a9a;
+      width: 55%;
+
+      @include lg-up {
+        width: 299px;
+      }
+
+      .price {
+        right: 25px;
+
+        @include lg-up {
+          right: auto;
+          left: 105px;
+        }
+      }
+    }
+
+    .icon-wrapper {
+      width: 42px;
+      height: 42px;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}
