@@ -1,3 +1,131 @@
+@import "../../mixins/mixins-master";
+
 .lp-footer {
- 
+  background-color: #0e143f;
+  padding: 60px 0 40px;
+  color: #ffffff;
+  font-family: "sofia-pro", sans-serif;
+
+  &__grid {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    @include lg-up {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-end; // Align bottom as per typical footer layouts or screenshots
+    }
+  }
+
+  &__col {
+    display: flex;
+    flex-direction: column;
+
+    &--contact {
+      flex: 1;
+      @include lg-up {
+        max-width: 400px;
+      }
+    }
+
+    &--hours {
+      flex: 1;
+      @include lg-up {
+        max-width: 300px;
+      }
+    }
+
+    &--links {
+      @include lg-up {
+        align-self: flex-end;
+        text-align: right;
+      }
+    }
+  }
+
+  &__logo {
+    margin-bottom: 32px;
+    width: 150px;
+
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  }
+
+  &__group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__heading {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0 0 8px;
+    color: #ffffff;
+    // uppercase or normal? Design usually normal/bold
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    text-decoration: none;
+    transition: opacity 0.3s;
+
+    &:hover {
+      opacity: 0.8;
+      color: #ffffff;
+    }
+
+    .icon {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  &__nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row; // Side by side on mobile
+    gap: 24px;
+
+    @include lg-up {
+      flex-direction: column; // Stacked on desktop
+      text-align: right;
+      align-items: flex-end;
+      gap: 16px;
+    }
+
+    li {
+      a {
+        font-size: 14px;
+        font-weight: 600;
+        color: #ffffff;
+        text-decoration: none;
+        transition: opacity 0.3s;
+
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+    }
+  }
 }
