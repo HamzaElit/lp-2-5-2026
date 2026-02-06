@@ -147,8 +147,6 @@ details {
   summary {
     padding: 1.2rem 6.4rem 1.2rem 0;
     font-size: 0;
-    background-color: white;
-    border-bottom: 1px solid var(--Light-Grey, #e0e0e0);
     @include md-up {
       padding: 2rem 8rem 2rem 0;
     }
@@ -248,35 +246,6 @@ details {
         transform-origin: center;
         transform: rotate(0);
       }
-    }
-  }
-}
-
-.lp-faq {
-  details.accordion__item {
-    background-color: transparent;
-    border-bottom: 1px solid var(--Deep-Blue);
-
-    &:last-child {
-      border-bottom: none;
-    }
-  }
-
-  .user-profile {
-    padding: 0;
-    background-color: transparent;
-    border: none;
-
-    // Hide the old ::before and ::after for FAQ
-    &::before,
-    &::after {
-      display: none;
-    }
-  }
-
-  details.accordion__item[open] {
-    .accordion__answer {
-      padding: 0;
     }
   }
 }

@@ -74,82 +74,96 @@ window.addEventListener("load", function () {
 
   // Initialize Swiper for Results Slider
   if (document.querySelector('.lp-results-swiper')) {
+    const isDesktop = window.innerWidth >= 1200;
+    
     const resultsSwiper = new Swiper('.lp-results-swiper', {
       slidesPerView: 'auto',
       spaceBetween: 16,
-      centeredSlides: true,
+      centeredSlides: !isDesktop,
       loop: true,
-      // Default to disabled autoplay
-      autoplay: {
-        delay: 3000,
-        disableOnInteraction: false,
-        enabled: false, 
-      },
+      loopAdditionalSlides: 10,
+      speed: 300,
+      allowTouchMove: window.innerWidth < 768,
       navigation: {
         nextEl: '.lp-results-nav--next',
         prevEl: '.lp-results-nav--prev',
       },
       breakpoints: {
-        // Mobile
         320: {
-            slidesPerView: 'auto',
-            spaceBetween: 0,
-            centeredSlides: true,
-            autoplay: {
-              enabled: false
-            },
+          slidesPerView: 'auto',
+          spaceBetween: 0,
+          centeredSlides: true,
+          allowTouchMove: true,
         },
-        // Tablet
         768: {
-            slidesPerView: 'auto',
-            spaceBetween: 10,
-            centeredSlides: true,
-            autoplay: {
-              enabled: false
-            },
+          slidesPerView: 'auto',
+          spaceBetween: 10,
+          centeredSlides: true,
+          allowTouchMove: false,
         },
-        // Desktop
         1200: {
-            slidesPerView: 'auto',
-            spaceBetween: 24,
-            centeredSlides: false,
-            speed: 4000,
-            autoplay: {
-                delay: 0,
-                disableOnInteraction: false,
-                enabled: true, // Enable only on desktop
-            },
+          slidesPerView: 'auto',
+          spaceBetween: 24,
+          centeredSlides: false,
+          allowTouchMove: false,
         }
       }
     });
 
-    // Clean up or restart autoplay on resize to avoid stuck states
+    var tickerSpeed = 0.5;
+    var tickerAnimationId = null;
+    var isPaused = false;
+
+    function tickerScroll() {
+      if (isPaused || !resultsSwiper || resultsSwiper.destroyed) return;
+
+      var currentTranslate = resultsSwiper.getTranslate();
+      var maxTranslate = resultsSwiper.maxTranslate();
+      var minTranslate = resultsSwiper.minTranslate();
+      var newTranslate = currentTranslate - tickerSpeed;
+
+      if (newTranslate < maxTranslate) {
+        var diff = maxTranslate - newTranslate;
+        resultsSwiper.setTranslate(minTranslate - diff);
+      } else {
+        resultsSwiper.setTranslate(newTranslate);
+      }
+
+      resultsSwiper.wrapperEl.style.transitionDuration = '0ms';
+      tickerAnimationId = requestAnimationFrame(tickerScroll);
+    }
+
+    function startTicker() {
+      if (tickerAnimationId) return;
+      isPaused = false;
+      tickerAnimationId = requestAnimationFrame(tickerScroll);
+    }
+
+    function stopTicker() {
+      isPaused = true;
+      if (tickerAnimationId) {
+        cancelAnimationFrame(tickerAnimationId);
+        tickerAnimationId = null;
+      }
+    }
+
+    if (isDesktop) {
+      startTicker();
+    }
+
     let resizeTimer;
     window.addEventListener('resize', () => {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(() => {
-        if(resultsSwiper && !resultsSwiper.destroyed) {
-          resultsSwiper.update(); 
-          
-          // Force autoplay check based on width
+        if (resultsSwiper && !resultsSwiper.destroyed) {
           if (window.innerWidth >= 1200) {
-            resultsSwiper.params.speed = 4000;
-            resultsSwiper.params.autoplay.delay = 0;
-            resultsSwiper.params.autoplay.enabled = true;
-            resultsSwiper.autoplay.start();
-            // Ensure wrapper has linear transition for ticker effect
-            const wrapper = resultsSwiper.wrapperEl;
-            if(wrapper) wrapper.style.transitionTimingFunction = 'linear';
+            startTicker();
           } else {
-             resultsSwiper.params.speed = 300; // Reset to normal speed
-             resultsSwiper.params.autoplay.enabled = false;
-             resultsSwiper.autoplay.stop();
-             // Reset transition timing
-             const wrapper = resultsSwiper.wrapperEl;
-             if(wrapper) wrapper.style.transitionTimingFunction = 'ease';
+            stopTicker();
           }
+          resultsSwiper.update();
         }
-      }, 200);
+      }, 250);
     });
   }
 

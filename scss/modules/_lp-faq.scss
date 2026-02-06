@@ -1,0 +1,92 @@
+@import "../mixins/mixins-master";
+
+.lp-faq {
+  padding: 55px 0 80px;
+  background-color: white;
+
+  &__title {
+    font-family: "sofia-pro", sans-serif;
+    font-weight: 900;
+    font-size: 34px;
+    line-height: 1.2;
+    color: #0f0f0f;
+    margin-bottom: 40px;
+
+    @include lg-up {
+      margin-bottom: 60px;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 1040px;
+  }
+
+  details.accordion__item {
+    background-color: #e5e8f2;
+    border-radius: 40px; // Pill shape look
+    overflow: hidden;
+    transition: all 0.3s ease;
+
+    // Remove default border from components if any (though we are in a fresh module)
+    border: none;
+
+    summary.accordion__quesion {
+      padding: 24px 32px;
+      cursor: pointer;
+      list-style: none;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      // Font styles
+      font-family: "sofia-pro", sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 1.4;
+      color: #0f0f0f;
+
+      @include lg-up {
+        font-size: 20px;
+        padding: 25px 48px;
+      }
+
+      // Hide default marker
+      &::-webkit-details-marker {
+        display: none;
+      }
+      &::marker {
+        display: none;
+        font-size: 0;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .accordion__answer {
+      padding: 0 32px 32px;
+
+      @include lg-up {
+        padding: 0 48px 30px;
+      }
+
+      p {
+        font-family: "sofia-pro", sans-serif;
+        font-weight: 400; // Regular/Light
+        font-size: 16px;
+        line-height: 1.5;
+        color: #0f0f0f;
+        margin: 0;
+
+        @include lg-up {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+}

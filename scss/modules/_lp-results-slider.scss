@@ -28,23 +28,19 @@
   &__wrapper {
     position: relative;
     width: 100%;
+    width: min(100% - 4rem, 110rem);
+    margin: 0 auto;
 
     @include lg-up {
+      width: 100%;
       padding: 0 20px;
     }
   }
 
-  // Swiper Customization
   .lp-results-swiper {
     width: 100%;
-    padding-bottom: 20px; // Space for shadows
-    overflow: visible; // Allow shadows to persist
-
-    @include lg-up {
-      .swiper-wrapper {
-        transition-timing-function: linear;
-      }
-    }
+    padding-bottom: 20px;
+    overflow: visible;
   }
 
   .swiper-slide {
@@ -112,11 +108,11 @@
     }
 
     &--prev {
-      left: -25px;
+      left: -20px;
     }
 
     &--next {
-      right: -25px;
+      right: -20px;
     }
 
     svg {
